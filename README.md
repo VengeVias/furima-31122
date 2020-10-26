@@ -2,31 +2,33 @@
 
 ## users テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| email         | string  | null: false |
-| password      | string  | null: false |
-| nickname      | string  | null: false |
-| fullname      | string  | null: false |
-| fullname_kana | string  | null: false |
-| birthday      | date    | null: false |
+| Column         | Type    | Options     |
+| -------------- | ------- | ----------- |
+| email          | string  | null: false |
+| password       | string  | null: false |
+| nickname       | string  | null: false |
+| firstname      | string  | null: false |
+| lastname       | string  | null: false |
+| firstname_kana | string  | null: false |
+| lastname_kana  | string  | null: false |
+| birthday       | date    | null: false |
 
 ### Association
 
 - has_many :items
 - has_many :comments
-- has_many :purchaser
+- has_many :purchasers
 
 ## items テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| item_name       | string     | null: false                    |
+| name            | string     | null: false                    |
 | description     | text       | null: false                    |
-| category        | string     | null: false                    |
-| condition       | string     | null: false                    |
-| delivery_charge | boolean    | null: false                    |
-| region          | string     | null: false                    |
+| category        | integer    | null: false                    |
+| condition       | integer    | null: false                    |
+| delivery_charge | integer    | null: false                    |
+| region          | integer    | null: false                    |
 | days_to_ship    | integer    | null: false                    |
 | price           | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
@@ -58,6 +60,7 @@
 | prefecture    | string     | null: false                    |
 | city          | string     | null: false                    |
 | address       | integer    | null: false                    |
+| building      | string     | null: false                    |
 | phonenumber   | integer    | null: false                    |
 | user          | references | null: false, foreign_key: true |
 | item          | references | null: false, foreign_key: true |
@@ -68,13 +71,15 @@
 - belongs_to :user
 - has_one    :building
 
-## buildings テーブル
+## logs テーブル
 
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| building  | string     | null: false                    |
-| purchaser | references | null: false, foreign_key: true |
+| Column           | Type       | Options                                           |
+| ---------------- | ---------- | ------------------------------------------------- |
+| item             | references | null: false, foreign_key: true                    |
+| user             | references | null: false, foreign_key: true                    |
 
 ### Association
 
-- belongs_to :purchaser
+- belongs_to :item
+- belongs_to :user
+
