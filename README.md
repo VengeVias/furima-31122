@@ -21,17 +21,17 @@
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| name            | string     | null: false                    |
-| description     | text       | null: false                    |
-| category        | integer    | null: false                    |
-| condition       | integer    | null: false                    |
-| delivery_charge | integer    | null: false                    |
-| region          | integer    | null: false                    |
-| days_to_ship    | integer    | null: false                    |
-| price           | integer    | null: false                    |
-| user            | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| description        | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
+| region_id          | integer    | null: false                    |
+| days_to_ship_id    | integer    | null: false                    |
+| price_id           | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -56,20 +56,16 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| postal_code   | integer    | null: false                    |
-| prefecture    | string     | null: false                    |
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
-| address       | integer    | null: false                    |
-| building      | string     | null: false                    |
-| phonenumber   | integer    | null: false                    |
-| user          | references | null: false, foreign_key: true |
-| item          | references | null: false, foreign_key: true |
+| address       | string     | null: false                    |
+| building      | string     |                                |
+| phonenumber   | string     | null: false                    |
+| log           | references | null: false, foreign_key: true |
 
 ### Association
-
-- belongs_to :item
-- belongs_to :user
-- has_one    :building
+- belongs_to :log
 
 ## logs テーブル
 
@@ -82,4 +78,5 @@
 
 - belongs_to :item
 - belongs_to :user
+- has_one    :purchaser
 
