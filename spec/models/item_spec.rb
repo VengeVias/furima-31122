@@ -4,7 +4,6 @@ RSpec.describe Item, type: :model do
   describe '#create' do
     before do
       @item = FactoryBot.build(:item)
-      @item.image = fixture_file_upload('app/assets/images/camera.png')
     end
 
     it "全てのデータが存在すれば登録できること" do
@@ -112,6 +111,5 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
     end
-
   end
 end
