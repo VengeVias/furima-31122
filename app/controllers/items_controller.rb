@@ -20,14 +20,13 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    
   end
 
   def update
-    if @item.save
-      redirect_to root_path
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
     else
-      render :show
+      render :edit
     end
   end
 
@@ -50,7 +49,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    @item = Item.find(params[:id])
+    item_find
     unless current_user.id == @item.user_id
       redirect_to action: :index
     end
