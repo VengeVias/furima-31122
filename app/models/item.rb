@@ -8,6 +8,7 @@ class Item < ApplicationRecord
 
   has_one_attached :image
   has_one :log
+  belongs_to :user
 
   with_options presence: true do
     validates :name
