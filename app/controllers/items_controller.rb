@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.delete
-    render :index
+    redirect_to root_path
   end
 
   def show
